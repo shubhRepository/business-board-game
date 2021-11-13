@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap"
+      rel="stylesheet"
+    /> -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap"
+      rel="stylesheet"
+    /> -->
+    <!-- <link rel="stylesheet" href="../shared.css" /> -->
+    <link rel="stylesheet" href="./style.css"/>
+    <!-- <link rel="stylesheet" href="prevStyle.css"> -->
+    <link rel="stylesheet" href="./modal.css">
+    <link rel="stylesheet" href="asset-modal.css">
+    <script type="module" defer src="./script.js"></script>
+    <!-- <script type="module" defer src="./newScript.js"></script> -->
+    <title>Document</title>
+  <body>
+    <header class="header">
+      <button class="btn btn--restart">Restart
+      </button>
+      <div id="toggle-theme">
+        <span class="circle"></span>
+      </div>
+    </header>
+    <div class="first-overlay"></div>
+    <div class="countdown-timer hidden">3</div>
+    <!-- <div class="first-overlay"></div>
+    <div class="countdown-timer">3</div> -->
+    <div class="modal hidden">
+      <div class="modal-header">
+          <div class="question"></div>
+          <div class="close-btn__circle">
+            <img class="close-btn" src="../images/close.png"/>
+          </div>
+      </div>
+      <div class="price-info hidden">
+        <span>Selling Price: $24</span>
+        <span>Buy Price: $200</span>
+        <span>Rent Price: $40</span>
+      </div>
+      <div class="modal-footer">
+          <button id="yes-btn" class="modal-btn btn">Yes</button>
+          <button id="cancel-btn" class="modal-btn btn">No</button>
+      </div>
+    </div>
+    <div class="modal-bid hidden">
+      <div class="player-area">
+        <div class="close-btn__circle hidden" id="modal-bid__close">
+          <img class="close-btn" src="../images/close.png"/>
+        </div>
+        <div class="player-timer__circle">
+          <div class="bid-timer"></div>
+        </div>
+        <div class="user-bid__text">
+          <h3 class="player-name">Player One</h3>
+          <span class="bidding-text">Bids $1 for city name</span>
+        </div>
+        <div class="user-bid__input">
+          <label for="bid-amount" id="user-label__bid">Player Two place your bid amount: </label>
+          <input class="user-input__bid-amount" type="number" placeholder="Enter amount" id="bid-amount">
+        </div>
+        <button class="bid-submit btn">Bid</button>
+        <div class="modal-bid__greeting hidden">
+          <h2 class="head-greet">Congratulations PLAYERONE,</h2>
+          <p class="para-greet">You successfully won this bid from PLAYERTWO</p>
+          <span class="bought-info">You own CITYNAME city.</span>
+        </div>
+      </div>
+    </div>
+      <!-- <div class="second-overlay"></div> -->
+      <div class="board-container">
+        <div class="bottom-row" id="block-one" data-id="1">
+          <div class="content-grid">
+            <img src="../images/start.png" />
+            <span class="main-tag">Go!</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-two" data-isBought="false" data-id="2">
+          <div class="content-grid">
+            <img src="../images/town.png" />
+            <span class="main-tag">PANAJI</span>
+            <span class="price-tag">$200</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-three" data-id="3">
+          <div class="content-grid">
+            <img src="../images/gold.png" />
+            <span class="main-tag">CHEST</span>
+            <span class="price-tag">$1000</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-four" data-isBought="false" data-id="4">
+          <div class="content-grid">
+            <img src="../images/jaipur.png" />
+            <span class="main-tag">JAIPUR</span>
+            <span class="price-tag">$380</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-five" data-id="5">
+          <div class="content-grid">
+            <img src="../images/tax.png" />
+            <span class="main-tag">PAY TAX</span>
+            <span class="price-tag">$200</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-six" data-isBought="false" data-id="6">
+          <div class="content-grid">
+            <img src="../images/agra.png" />
+            <span class="main-tag">AGRA</span>
+            <span class="price-tag">$270</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-seven" data-isBought="false" data-id="7">
+          <div class="content-grid">
+            <img src="../images/city.png" />
+            <span class="main-tag">VADODARA</span>
+            <span class="price-tag">$360</span>
+          </div>
+        </div>
+        <div class="bottom-row" id="block-eight" data-id="8">
+          <div class="content-grid">
+            <img src="../images/jail.png" />
+            <span class="main-tag">JAIL</span>
+            <span class="price-tag">$250</span>
+          </div>
+        </div>
+        <div class="left-column" id="block-nine" data-isBought="false" data-id="9">
+          <div class="content-grid">
+            <img src="../images/goa.png" />
+            <span class="main-tag">GOA</span>
+            <span class="price-tag">$260</span>
+          </div>
+        </div>
+        <div class="left-column" id="block-ten" data-id="10">
+          <div class="content-grid">
+            <img src="../images/station.png" />
+            <span class="main-tag">STATION</span>
+            <span class="price-tag">$150</span>
+          </div>
+        </div>
+        <div class="left-column" id="block-eleven" data-isBought="false" data-id="11">
+          <div class="content-grid">
+            <img src="../images/town.png" />
+            <span class="main-tag">INDORE</span>
+            <span class="price-tag">$250</span>
+          </div>
+        </div>
+        <div class="left-column" id="block-twelve" data-id="12">
+          <div class="content-grid">
+            <img src="../images/gold.png" />
+            <span class="main-tag">CHEST</span>
+            <span class="price-tag">$1500</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-thirteen" data-id="13">
+          <div class="content-grid">
+            <img src="../images/lucky.png" />
+            <span class="main-tag">EXTRA CHANCE</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-fourteen" data-isBought="false" data-id="14">
+          <div class="content-grid">
+            <img src="../images/throne.png" />
+            <span class="main-tag">LUCKNOW</span>
+            <span class="price-tag">$240</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-fifteen" data-isBought="false" data-id="15">
+          <div class="content-grid">
+            <img src="../images/udaipur.png" />
+            <span class="main-tag">UDAIPUR</span>
+            <span class="price-tag">$280</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-sixteen" data-id="16">
+          <div class="content-grid">
+            <img src="../images/petrol.png" />
+            <span class="main-tag">PETROL</span>
+            <span class="price-tag">$300</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-seventeen" data-isBought="false" data-id="17">
+          <div class="content-grid">
+            <img src="../images/city.png" />
+            <span class="main-tag">PUNE</span>
+            <span class="price-tag">$320</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-eighteen" data-isBought="false" data-id="18">
+          <div class="content-grid">
+            <img src="../images/town.png" />
+            <span class="main-tag">KOCHI</span>
+            <span class="price-tag">$240</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-nineteen" data-id="19">
+          <div class="content-grid">
+            <img src="../images/parking.png" />
+            <span class="main-tag">FREE PARKING</span>
+          </div>
+        </div>
+        <div class="top-row" id="block-twenty" data-id="20" data-jailId="8">
+          <div class="content-grid">
+            <img src="../images/bail.png" />
+            <span class="main-tag">GO TO JAIL</span>
+          </div>
+        </div>
+        <div class="right-column" id="block-twenty-one" data-id="21">
+          <div class="content-grid">
+            <img src="../images/city.png" />
+            <span class="main-tag">PAY TAX</span>
+            <span class="price-tag">$250</span>
+          </div>
+        </div>
+        <div class="right-column" id="block-twenty-two" data-id="22">
+          <div class="content-grid">
+            <img src="../images/gold.png" />
+            <span class="main-tag">CHEST</span>
+            <span class="price-tag">$1200</span>
+          </div>
+        </div>
+        <div class="right-column" id="block-twenty-three" data-isBought="false"
+        data-id="23">
+          <div class="content-grid">
+            <img src="../images/sea.png" />
+            <span class="main-tag">CHENNAI</span>
+            <span class="price-tag">$350</span>
+          </div>
+        </div>
+        <div class="right-column" id="block-twenty-four" data-isBought="false"
+        data-id="24">
+          <div class="content-grid">
+            <img src="../images/city.png" />
+            <span class="main-tag">MUMBAI</span>
+            <span class="price-tag">$450</span>
+          </div>
+        </div>
+        <div class="player-control">
+          <h1 class="current-player-name">Player Name</h1>
+          <div class="player-grid">
+            <div class="amount-info" id="balance">
+              <span class="amount-heading">Bank Balance: </span>
+              <span class="amount">$0</span>
+            </div>
+            <div class="amount-info" id="assets">
+              <span class="amount-heading">Acquired Assets: </span>
+              <span class="amount">0</span>
+            </div>
+            <div class="dice-item">
+              <img src="../images/dice/1.png" class="dices" />
+              <img src="../images/dice/1.png" class="dices" />
+            </div>
+            <button class="btn" id="roll-dice" disabled>Roll Dice</button>
+            <div class="game-option-controls">
+              <button class="btn" id="buy-btn" disabled>BUY</button>
+              <!-- <button class="btn" id="sell-btn" disabled>SELL</button> -->
+              <button class="btn" id="bid-btn" disabled>BID</button>
+            </div>
+            <div class="game-guide-controls">
+              <div class="guide-item">To guide you</div>
+              <img src="../images/property.png" class="asset-list__img" title="Your Property"/>
+            </div>
+          </div>
+        </div>
+        <div class="asset-list__container hidden">
+          <p class="asset-message hidden">You currently don't have any assets.</p>
+          <div class="close-btn__circle" id="modal-asset__close">
+            <img class="close-btn" src="../images/close.png"/>
+          </div>
+          <div class="asset-info__container">
+            <div class="asset-heading"> Sell Your Assets</div>
+            <div class="list-container">
+              <span class="list-heading">CityName</span>
+              <span class="list-heading">Selling Price</span>
+              <!-- <div class="confirmation-container hidden">
+                    <span>Are you sure you wanna sell?</span>
+                      <button class="yes-sell__btn">Yes</button>
+                      <button class="no-sell__btn">No</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- <div class="asset-list">
+                <span>Mumbai</span>
+                <span>20$</span>
+                <button class="sell-btn" data-btnID="1">Sell</button>
+              </div> -->
