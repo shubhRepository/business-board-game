@@ -5,39 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./shared.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="header">
-      <div id="toggle-theme">
-        <span class="circle"></span>
-      </div>
-    </header>
-    <div class="modal">
-      <div class="modal-intro">
-        <h2 class="modal-heading">Business Board Game</h2>
-        <p class="modal-para">Helps to improve cognitive business skills.</p>
-      </div>
+    <div class="modal pos-fxd-ctr pd-mdm">
+      <header class="mrg-bttm-bg">
+        <h2 class="pri-head">Business Board Game</h2>
+        <p class="para">Helps to improve cognitive business skills.</p>
+      </header>
       <form method="POST" id="start-form" class="form-styles">
-        <div class="user-input__item">
-          <label for="player-one__name" class="user-text__label"
+        <div class="flex flx-col ip-ctr mrg-bttm-mdm">
+          <label for="player-one__name" class="ip-lbl mrg-bttm-smll"
             >Nickname(Player1):
           </label>
           <input
             type="text"
             id="player-one__name"
-            class="user-input"
+            class="usr-ip pd-smll wdth-mdm"
             placeholder="eg:tommy"
             name="username"
             required
           />
         </div>
-        <div class="user-input__item">
-          <label for="player-one__color" class="user-color__label">
+        <div class="flex flx-col ip-ctr mrg-bttm-mdm">
+          <label for="player-one__color" class="ip-lbl mrg-bttm-smll">
             Choose player one's token color:
           </label>
-          <div class="user-input__color" id="player-one__color">
+          <div class="flex flx-row ip-ctr wdth-mdm" id="player-one__color">
             <input type="radio" name="color" value="#2f9e44" id="g1" checked />
             <label class="square color-green outline" for="g1"></label>
             <input type="radio" name="color" value="#339af0" id="b1" />
@@ -48,24 +42,24 @@
             <label class="square color-red" for="r1"></label>
           </div>
         </div>
-        <div class="user-input__item">
-          <label for="player-two__name" class="user-text__label"
+        <div class="flex flx-col ip-ctr mrg-bttm-mdm">
+          <label for="player-two__name" class="ip-lbl mrg-bttm-smll"
             >Nickname(Player2):
           </label>
           <input
             type="text"
             id="player-two__name"
-            class="user-input"
+            class="usr-ip pd-smll wdth-mdm"
             placeholder="eg:ricky"
             name="username"
             required
           />
         </div>
-        <div class="user-input__item">
-          <label for="player-two__color" class="user-color__label">
+        <div class="flex flx-col ip-ctr mrg-bttm-mdm">
+          <label for="player-two__color" class="ip-lbl mrg-bttm-smll">
             Choose player two's token color:
           </label>
-          <div class="user-input__color" id="player-two__color">
+          <div class="flex flx-row ip-ctr wdth-mdm" id="player-two__color">
             <input type="radio" name="color" value="#2f9e44" id="g2" />
             <label class="square color-green not-allowed" for="g2"></label>
             <input type="radio" name="color" value="#339af0" id="b2" checked />
@@ -76,11 +70,10 @@
             <label class="square color-red" for="r2"></label>
           </div>
         </div>
-        <div class="error"></div>
         <input
           type="submit"
           value="Submit"
-          class="modal-btn__style submit-btn"
+          class="wdth-full pd-smll submit-btn"
         />
       </form>
     </div>

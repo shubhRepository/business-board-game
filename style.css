@@ -6,84 +6,137 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"); */
 
 /*
-  PRIMARY:  #f59f00
-  TINTS: #f9c566, #fef5e6
-  SHADES: #7b5000, #181000, #312000
+  PRIMARY:  #FFEF41
+  TINTS: #fff267
+  SHADES: #4c4813 #312000 #191806
 
 */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: #ffffff;
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  background: url("./background-ludo.jpg");
+  background-position: right top;
+  background-repeat: no-repeat;
+  filter: contrast(170%);
+  font-family: "Noto Sans", sans-serif;
+}
+
 .modal {
-  box-shadow: 0 2px 4px 2px rgba(85, 85, 85, 0.315);
-  border: 4px solid #f9c566;
-  padding: 1rem;
+  box-shadow: 0 4px 8px 10px rgba(25, 22, 6, 0.15);
+  border: 4px solid #fff267;
+  border-radius: 8px;
+  backdrop-filter: blur(25px) brightness(150%) contrast(30%);
+}
+
+.pd-mdm {
+  padding: 1.6rem;
+}
+
+.pd-smll {
+  padding: 0.8rem;
+}
+
+.pos-fxd-ctr {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -46%);
-  background-color: #fef5e6;
 }
 
-.modal-intro {
-  margin-bottom: 1rem;
+.mrg-bttm-bg {
+  margin-bottom: 2.4rem;
 }
 
-.modal-heading {
-  font-family: "Noto Sans", sans-serif;
-  color: #7b5000;
+.mrg-bttm-mdm {
+  margin-bottom: 1.8rem;
 }
 
-.modal-para {
+.mrg-bttm-smll {
+  margin-bottom: 0.8rem;
+}
+
+.wdth-full {
+  width: 100%;
+}
+
+.wdth-mdm {
+  width: 70%;
+}
+
+.pri-head {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: #4c4813;
+}
+
+.para {
+  font-size: 1.8rem;
   font-family: "Work Sans", sans-serif;
-  color: #181000;
+  color: #191806;
 }
 
-.user-input__item {
+.flex {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+}
+
+.flx-col {
+  flex-flow: column wrap;
+}
+
+.flx-row {
+  flex-flow: row wrap;
+}
+
+.ip-ctr {
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 1rem;
 }
 
-.user-text__label,
-.user-color__label {
-  font-size: 0.9rem;
+.ip-lbl {
+  font-size: 1.8rem;
   font-weight: 500;
-  font-family: "Noto Sans", sans-serif;
   color: #312000;
 }
 
-.user-text__label {
-  margin-bottom: 0.3rem;
-}
-
-.user-text__label ~ input {
-  width: 100%;
-  padding: 0.4rem;
-  font-family: sans-serif;
+.usr-ip {
+  font-size: 1.4rem;
   font-weight: 400;
-  border: 1.5px solid #181000;
-  border-radius: 0.8em;
+  border: 1px solid;
+  border-radius: 1rem;
   outline: none;
-  /* color: #312000; */
-  color: #09200e;
 }
 
-.user-input:focus {
+/* .user-input:focus {
   border: 1.5px solid #2f9e44;
   background-color: #eaf5ec;
-}
+} */
 
-.user-color__label {
-  margin-bottom: 0.7rem;
-}
+/* .user-color__label {
+  margin-bottom: 1rem;
+} */
 
-.user-input__color {
-  display: flex;
-  flex-flow: row wrap;
+/* .user-input__color {
   width: 50%;
-  justify-content: space-between;
+} */
+
+.ip-ctr:last-child {
+  margin-bottom: 1rem;
+}
+
+.ip-ctr input[type="radio" i] {
+  display: none;
 }
 
 .color-green {
@@ -103,8 +156,8 @@
 }
 
 .square {
-  width: 1rem;
-  height: 1rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border: 1px solid black;
   border-radius: 50%;
   cursor: pointer;
@@ -120,31 +173,21 @@
   box-shadow: 0 0 2px 2px #364fc7;
 }
 
-.user-input__color input[type="radio" i] {
-  display: none;
+.submit-btn {
+  color: #191806;
+  font-size: 2.4rem;
+  border: 2px solid #ffef41;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #fff47a 30%, #fff154);
+  transition: all 300ms;
 }
 
-.modal-btn__style {
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.3rem;
-  color: #181000;
-  font-family: "Noto Sans", sans-serif;
-  font-size: 1.2rem;
-  border: 2px solid #f59f00;
-  background: linear-gradient(45deg, #f59f00 40%, #f7b233);
-  border-radius: 0.5em;
-  transition: background-color 300ms, border-color 200ms, box-shadow 500ms,
-    transform 200ms;
-}
-
-.modal-btn__style:hover,
-.modal-btn__style:active {
+.submit-btn:hover,
+.submit-btn:active {
   box-shadow: 1px 1px 2px 2px inset rgba(97, 97, 97, 0.2);
-  border: 2px solid #dd8f00;
-  background-color: #f59f00;
+  background-color: #ccbf34;
 }
 
-.modal-btn__style:active {
+.submit-btn:active {
   transform: scale(0.9);
 }
