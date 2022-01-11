@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Business Board Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -15,12 +15,12 @@
       </header>
       <form method="POST" id="start-form" class="form-styles">
         <div class="flex flx-col ip-ctr mrg-bttm-mdm">
-          <label for="player-one__name" class="ip-lbl mrg-bttm-smll"
+          <label for="p1-name" class="ip-lbl mrg-bttm-smll"
             >Nickname(Player1):
           </label>
           <input
             type="text"
-            id="player-one__name"
+            id="p1-name"
             class="usr-ip pd-smll wdth-mdm"
             placeholder="eg:tommy"
             name="username"
@@ -28,10 +28,10 @@
           />
         </div>
         <div class="flex flx-col ip-ctr mrg-bttm-mdm">
-          <label for="player-one__color" class="ip-lbl mrg-bttm-smll">
+          <label for="p1-color" class="ip-lbl mrg-bttm-smll">
             Choose player one's token color:
           </label>
-          <div class="flex flx-row ip-ctr wdth-mdm" id="player-one__color">
+          <div class="flex flx-row ip-ctr wdth-mdm" id="p1-color">
             <input type="radio" name="color" value="#2f9e44" id="g1" checked />
             <label class="square color-green outline" for="g1"></label>
             <input type="radio" name="color" value="#339af0" id="b1" />
@@ -43,12 +43,12 @@
           </div>
         </div>
         <div class="flex flx-col ip-ctr mrg-bttm-mdm">
-          <label for="player-two__name" class="ip-lbl mrg-bttm-smll"
+          <label for="p2-name" class="ip-lbl mrg-bttm-smll"
             >Nickname(Player2):
           </label>
           <input
             type="text"
-            id="player-two__name"
+            id="p2-name"
             class="usr-ip pd-smll wdth-mdm"
             placeholder="eg:ricky"
             name="username"
@@ -56,10 +56,10 @@
           />
         </div>
         <div class="flex flx-col ip-ctr mrg-bttm-mdm">
-          <label for="player-two__color" class="ip-lbl mrg-bttm-smll">
+          <label for="p2-color" class="ip-lbl mrg-bttm-smll">
             Choose player two's token color:
           </label>
-          <div class="flex flx-row ip-ctr wdth-mdm" id="player-two__color">
+          <div class="flex flx-row ip-ctr wdth-mdm" id="p2-color">
             <input type="radio" name="color" value="#2f9e44" id="g2" />
             <label class="square color-green not-allowed" for="g2"></label>
             <input type="radio" name="color" value="#339af0" id="b2" checked />
@@ -70,13 +70,11 @@
             <label class="square color-red" for="r2"></label>
           </div>
         </div>
-        <input
-          type="submit"
-          value="Submit"
-          class="wdth-full pd-smll submit-btn"
-        />
+
+        <input type="submit" value="Submit" class="wdth-full submit-btn" />
+        <!-- <span>Submit</span> -->
       </form>
     </div>
-    <script type="module" defer src="UserDataCollector.js"></script>
+    <script type="module" defer src="./UserDataCollector.js"></script>
   </body>
 </html>

@@ -9,7 +9,10 @@
   PRIMARY:  #FFEF41
   TINTS: #fff267
   SHADES: #4c4813 #312000 #191806
-
+  
+  SECONDARY: #eb3b38
+  TINTS: #ef6260
+  SHADES: #d43532
 */
 
 * {
@@ -174,18 +177,19 @@ body {
 }
 
 .submit-btn {
-  color: #191806;
+  padding: 0.6rem;
+  color: #2f0c0b;
   font-size: 2.4rem;
-  border: 2px solid #ffef41;
   border-radius: 8px;
-  background: linear-gradient(45deg, #fff47a 30%, #fff154);
-  transition: all 300ms;
+  border: none;
+  background: #ef6260;
+  background: radial-gradient(circle, #ef6260 40%, #eb3b38 100%);
+  border: 2px solid #d43532;
 }
 
 .submit-btn:hover,
 .submit-btn:active {
-  box-shadow: 1px 1px 2px 2px inset rgba(97, 97, 97, 0.2);
-  background-color: #ccbf34;
+  box-shadow: inset 0 0 8px 2px rgba(0, 0, 0, 0.4);
 }
 
 .submit-btn:active {
