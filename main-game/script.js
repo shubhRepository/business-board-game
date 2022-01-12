@@ -161,34 +161,33 @@ String.prototype.capitalize = function () {
 
 // const assetList = document.querySelector("game-guide-controls");
 
-//TODO
-// const startTimerFor = function (secs) {
-//   let timeInString;
-//   function showCountDown() {
-//     if (secs === 0) timeInString = "START!";
-//     else timeInString = (secs--).toString();
-//     countDownTimer.textContent = timeInString;
-//   }
+const startTimerFor = function (secs) {
+  let timeInString;
+  function showCountDown() {
+    if (secs === 0) timeInString = "START!";
+    else timeInString = (secs--).toString();
+    countDownTimer.textContent = timeInString;
+  }
 
-//   // console.log(playerOne, playerTwo);
-//   let value = setInterval(showCountDown, 800);
+  // console.log(playerOne, playerTwo);
+  let value = setInterval(showCountDown, 800);
 
-//   return new Promise(function (resolve) {
-//     setTimeout(() => resolve(value), (secs + 1) * 1000);
-//   });
-// };
+  return new Promise(function (resolve) {
+    setTimeout(() => resolve(value), (secs + 1) * 1000);
+  });
+};
 
 // program starts here
-// startTimerFor(3).then((value) => {
-//   clearInterval(value);
-//   // firstOverlay.classList.add("hidden");
-//   // countDownTimer.classList.add("hidden");
-//   // initializeGame();
-// });
+startTimerFor(3).then((value) => {
+  clearInterval(value);
+  firstOverlay.classList.add("hidden");
+  countDownTimer.classList.add("hidden");
+  initializeGame();
+});
 
-firstOverlay.classList.add("hidden");
-countDownTimer.classList.add("hidden");
-initializeGame();
+// firstOverlay.classList.add("hidden");
+// countDownTimer.classList.add("hidden");
+// initializeGame();
 
 function addTokenStyles(token, player) {
   token.classList.add("circle");
