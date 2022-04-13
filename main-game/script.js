@@ -104,9 +104,7 @@ const dices = [...document.querySelectorAll(".dices")];
 const [buyBtn, bidBtn] = [
   ...document.querySelectorAll(".game-option-controls .btn"),
 ];
-// const [buyBtn, sellBtn, bidBtn] = [
-//   ...document.querySelectorAll(".game-option-controls .btn"),
-// ];
+
 const actionsList = ["buy", "jail", "bid"];
 
 const questionnaire = document.querySelector(".question");
@@ -353,7 +351,7 @@ function goToJail() {
   playersInJail[playerIndex] = true;
 }
 
-function handleNonBuyableCellActions(cellName, price) {
+function handleNonBuyableCellActions(cellName, price, cellIdx) {
   if (cellName === "chest") {
     addOrDeductBalance(price);
     // players[playerIndex].worth.balance += price;
@@ -364,8 +362,6 @@ function handleNonBuyableCellActions(cellName, price) {
     cellName === "petrol"
   ) {
     addOrDeductBalance(-price);
-    // players[playerIndex].worth.balance -= price;
-    // displayPlayersWorth(players[playerIndex].worth);
   } else if (cellName === "extra chance") {
     isExtraChance = true;
   } else if (cellName === "jail" && !playersInJail[playerIndex]) goToJail();
@@ -470,7 +466,7 @@ function takeRent() {
     // enableRollBtn = true;
     toggleRollBtn(true);
   } else {
-    if (!(players[playerIndex].worth.assetsWorth >= rentAmount)) {
+    if (players[playerIndex].worth.assetsWorth < rentAmount) {
       // GAME OVER
       gameOver();
       console.log("game over");
@@ -499,11 +495,16 @@ function playerMoveActions(cellIdx, turn) {
     return;
   }
   currentCellProperties = getCurrentCellProperties(cellIdx);
+  console.log(currentCellProperties);
 
-  if (!currentCellProperties.hasOwnProperty("isBought")) {
+  if (
+    !currentCellProperties.hasOwnProperty("isBought") ||
+    currentCellProperties?.isBought
+  ) {
     handleNonBuyableCellActions(
       currentCellProperties.cellName,
-      currentCellProperties.price
+      currentCellProperties.price,
+      cellIdx
     );
     enableRollBtn = true;
   } else {
@@ -536,6 +537,7 @@ rollDiceBtn.addEventListener("click", () => {
 
   setDiceImgInDOM(randDieOne, randDieTwo);
 
+  // TODO:
   isRecentlyBought = false;
 
   // only for one cell which has an extra chance
@@ -624,6 +626,10 @@ function buyActions(price, index = playerIndex, fromBuy = true) {
     buyAsset(index, price, fromBuy);
     fromBuy ? displayPlayersWorth(players[index].worth) : null;
     playerAcquisition[index].push(getAcquisitionInfo(index, price, fromBuy));
+    console.log(players);
+    console.log(playerAcquisition);
+    console.log(playersCellContainer);
+    console.log(currentCellProperties);
     // console.log(playerAcquisition[index]);
     // Object.assign(playerAcquisition[index], getAcquisitionInfo(index, price));
     currentCellProperties.isBought = true;
@@ -821,26 +827,6 @@ bidSubmit.addEventListener("click", function () {
   buttonControlHandler(playerIndex);
 });
 
-// function sellAsset(cityName) {
-//   const sellingPrice = playerAcquisition[playerIndex][cityName].sell;
-//   players[playerIndex].worth.assets -=
-//     playerAcquisition[playerIndex][cityName].buy;
-//   players[playerIndex].worth.balance += sellingPrice;
-//   delete playerAcquisition[playerIndex][cityName];
-// }
-
-// function buyAsset(turn, price, fromBuy) {
-//   const cellIndex = !fromBuy ? (turn ? 0 : 1) : turn;
-//   players[turn].worth.balance -= price;
-//   players[turn].worth.assetsWorth += +calcPrice(price, sellPercentage);
-//   players[turn].worth.assets += 1;
-//   !players[turn].assetId ? (players[turn].assetId = []) : null;
-//   players[turn].assetId.push(
-//     +playersCellContainer[cellIndex].getAttribute("data-id")
-//   );
-//   playersCellContainer[cellIndex].setAttribute("data-isBought", true);
-// }
-
 function sellAsset(turn, price, id) {
   players[turn].worth.balance += +price;
   players[turn].worth.assetsWorth -= +price;
@@ -856,19 +842,6 @@ function sellAsset(turn, price, id) {
 }
 
 function sellActions(index) {
-  // if (isRecentlyBought) {
-  //   closeModal();
-  //   guidingText.textContent = "You can only transact for once in a move!";
-  // } else {
-  //   sellAsset(currentCellProperties.cellName);
-  //   displayPlayersWorth(players[playerIndex].worth);
-  //   enableRollBtn = true;
-  //   toggleRollBtn();
-  //   buttonControlHandler(playerIndex);
-  // }
-  // console.log(index);
-  // console.log(playerAcquisition[playerIndex][index]);
-  // console.log(playerAcquisition[playerIndex]);
   sellAsset(
     playerIndex,
     playerAcquisition[playerIndex][index].sellPrice,
@@ -879,14 +852,6 @@ function sellActions(index) {
   // toggleRollBtn();
   buttonControlHandler(playerIndex);
 }
-
-// const startBidTimer = function (secs) {
-//   let value = setInterval(() => (bidTimer.textContent = secs--), 1000);
-
-//   return new Promise(function (resolve) {
-//     setTimeout(() => resolve(value), (secs + 1) * 1000);
-//   });
-// };
 
 function clearBidInput() {
   bidInput.value = "";
@@ -1063,183 +1028,3 @@ restartBtn.addEventListener("click", function () {
   window.location.href = window.location.href;
   // location.href = "./../index.html";
 });
-
-// if (!playerAcquisition[playerIndex]) {
-//   toggleAssetInfo("messageModal");
-// } else {
-//   toggleAssetInfo("infoContainer");
-//   playersAssetElements[playerIndex] = playerAcquisition[playerIndex].map(
-//     (cellData) => {
-//       const citySpan = document.createElement("span");
-//       citySpan.textContent = cellData.cityName.capitalize();
-//       const sellSpan = document.createElement("span");
-//       sellSpan.textContent = cellData.sellPrice;
-//       const sellBtn = document.createElement("button");
-//       sellBtn.textContent = "Sell";
-//       sellBtn.setAttribute("data-btnID", cellData.id);
-//       const assetList = document.createElement("div");
-//       assetList.classList.add("asset-list");
-//       assetList.append(citySpan);
-//       assetList.append(sellSpan);
-//       assetList.append(sellBtn);
-//       assetListContainer.insertAdjacentElement("beforeend", assetList);
-//       return assetList;
-//     }
-//   );
-// }
-//     const length = playersAssetElements[playerIndex].length;
-//     const lastAssetList = playersAssetElements[playerIndex][length - 1];
-//     console.log(lastAssetList);
-//     console.log(
-//       lastAssetList.getElementsByTagName("button")[0].getAttribute("data-btnID")
-//     );
-
-// const startBidTimer = function (secs) {
-// let value = setInterval(() => (bidTimer.textContent = secs--), 1000);
-
-//   return new Promise(function (resolve) {
-//     setTimeout(() => resolve(value), (secs + 1) * 1000);
-//   });
-// };
-
-// startBidTimer(10, bidTimer).then((value) => {
-//   clearInterval(value);
-//   if (!isBidPlaced) {
-//     setBiddingText(`you lost the bid from your opponent for ${biddingCity}`);
-//     bidInput.setAttribute("disabled", true);
-//   }
-// });
-
-// function resetButtonsFor(turn, isRecentlyBought = false) {
-//   if (playersCellContainer[turn].hasAttribute("data-isBought")) {
-//     if (playersCellContainer[turn].getAttribute("data-isBought") === "true") {
-//       if (isRecentlyBought) {
-//         buyBtn.setAttribute("disabled", true);
-//         bidBtn.setAttribute("disabled", true);
-//       } else sellBtn.removeAttribute("disabled");
-//     } else {
-//       buyBtn.removeAttribute("disabled");
-//       bidBtn.removeAttribute("disabled");
-//     }
-//   }
-// }
-
-// line 338
-// const startBidTimer = function (secs) {
-//   let value = setInterval(() => (bidTimer.textContent = secs--), 1000);
-
-//   return new Promise(function (resolve) {
-//     setTimeout(() => resolve(value), (secs + 1) * 1000);
-//   });
-// };
-
-// let bidPlayerOneIndex,
-//   bidPlayerTwoIndex,
-//   isBidPlaced = false,
-//   biddingCity;
-
-// function createBidPlayersState() {
-//   biddingCity = currentCellProperties.cellName;
-//   currentBidPlayerIndex = playerIndex ? 0 : 1;
-//   bidPlayerOneIndex = playerIndex;
-//   bidPlayerTwoIndex = currentBidPlayerIndex;
-//   bidPlayers = [
-//     {
-//       id: bidPlayerOneIndex,
-//       username: players[bidPlayerOneIndex].username,
-//       balance: players[bidPlayerOneIndex].worth.balance,
-//       bidPrice: 0,
-//     },
-//     {
-//       id: bidPlayerTwoIndex,
-//       username: players[bidPlayerTwoIndex].username,
-//       balance: players[bidPlayerTwoIndex].worth.balance,
-//       bidPrice: 0,
-//     },
-//   ];
-// }
-
-// function playerHasBalance(bidAmount) {
-//   return players[playerIndex].worth.balance >= bidAmount;
-// }
-
-// function showBidModal() {
-//   firstOverlay.classList.remove("hidden");
-//   modalBid.classList.remove("hidden");
-// }
-
-// function setBiddingText(message) {
-//   biddingText.textContent = message;
-// }
-
-// function displayBidModalInfo(name, message) {
-//   // const currentPlayerName = bidPlayers[currentBidPlayerIndex].username;
-//   bidPlayerName.textContent = name;
-//   setBiddingText(message);
-// }
-
-// function getBidPlayerName() {
-//   return bidPlayers[currentBidPlayerIndex].username;
-// }
-
-// bidBtn.addEventListener("click", function () {
-//   const initialBidPrice = 1;
-//   if (playerHasBalance(initialBidPrice)) {
-//     createBidPlayersState();
-//     showBidModal();
-
-//     const currentPlayerName = getBidPlayerName();
-//     const message = `${currentPlayerName} bids $${initialBidPrice} for ${biddingCity}`;
-
-//     displayBidModalInfo(currentPlayerName, message);
-// startBidTimer(10, bidTimer).then((value) => {
-//   clearInterval(value);
-//   if (!isBidPlaced) {
-//     setBiddingText(
-//       `you lost the bid from your opponent for ${biddingCity}`
-//     );
-//     bidInput.setAttribute("disabled", true);
-//   }
-// });
-//   }
-// });
-
-// function checkPlayerBalance(amount) {
-//   if (playersWorth[biddingPlayerIndex].balance >= amount) {
-//     console.log(true);
-//   }
-//   return true;
-// }
-
-// function updateBidModal() {
-//   const currentPlayerName = bidPlayers[currentBidPlayerIndex].username;
-//   const prevBidPrice = bidPlayers[currentBidPlayerIndex]
-//   bidPlayerName.textContent = currentPlayerName;
-//   biddingText.textContent = `${currentPlayerName} bids $${} for ${currentCellProperties.cellName}`;
-// }
-
-// function getOpponentPlayerIndex(currIndex) {
-//   return currIndex ? 0 : 1;
-// }
-
-// bidButton.addEventListener("click", function () {
-//   isBidPlaced = true;
-//   const enteredAmount = Number(bidInput.value);
-//   bidPlayers[currentBidPlayerIndex].bidPrice = enteredAmount;
-//   if (playerHasBalance(enteredAmount)) {
-//     const prevPlayerIndex = currentBidPlayerIndex;
-//     currentBidPlayerIndex = currentBidPlayerIndex ? 0 : 1;
-//     const currentPlayerName = getBidPlayerName();
-//     const message = `${currentPlayerName} bids $${bidPlayers[prevPlayerIndex].bidPrice} for ${biddingCity}`;
-
-//     displayBidModalInfo(currentPlayerName, message);
-//   } else {
-//     const opponentPlayerIndex = getOpponentPlayerIndex(currentBidPlayerIndex);
-//     console.log(players[opponentPlayerIndex]);
-//     players[opponentPlayerIndex].worth.balance -=
-//       bidPlayers[opponentPlayerIndex].bidPrice;
-//     console.log(players[opponentPlayerIndex]);
-
-//     biddingText.textContent = `You don't have that much money, you lost this bid from your opponent for ${currentCellProperties.cellName}`;
-//   }
-// });
